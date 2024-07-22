@@ -1,48 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { BiSearchAlt2, BiVideoPlus } from "react-icons/bi";
-import { BsBell } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { BiSearchAlt2 } from "react-icons/bi";
+import { useDispatch } from "react-redux";
 import { togglemenu } from "../../utils/appSlice";
-import { YOUTUBE_SEARCH_API } from "../../contants/api_data";
-import { cacheResults } from "../../utils/searchSlice";
 import "./Header.scss";
 
 const Header = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
-  const [showSuggestion, setShowSuggestion] = useState(false);
   const dispatch = useDispatch();
-
-  const searchCache = useSelector((store) => store.search);
-  useEffect(() => {
-    // make an api call after ever key press
-    // but if the difference between 2 API calls is greate that (<) 200ms
-    // decline the api call
-    const timer = setTimeout(() => {
-      if (searchCache[searchQuery]) {
-        setSuggestions(searchCache[searchQuery]);
-      } else {
-        getYoutubeSearchAPI();
-      }
-    }, 200);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchQuery]);
-
-  const getYoutubeSearchAPI = async () => {
-    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
-    const json = await data.json();
-    setSuggestions(json[1]);
-
-    // update the cache
-    dispatch(
-      cacheResults({
-        [searchQuery]: json[1],
-      })
-    );
-  };
 
   const handleToggleMenu = () => {
     dispatch(togglemenu());
@@ -71,11 +34,8 @@ const Header = () => {
           placeholder="Search..."
           type="text"
           onChange={(e) => {
-            setSearchQuery(e.target.value);
+            console.log("cambia")
           }}
-          value={searchQuery}
-          onFocus={() => setShowSuggestion(true)}
-          onBlur={() => setShowSuggestion(false)}
         />
         <button
           className="border border-gray-400 px-5 py-2 bg-gray-100 rounded-r-full"
@@ -83,21 +43,6 @@ const Header = () => {
         >
           <BiSearchAlt2 />
         </button>
-        {showSuggestion && (
-          <div className="fixed py-2 mt-9 w-[32rem] rounded-lg border border-gray-200 bg-white shadow-lg">
-            <ul>
-              {suggestions.map((suggest) => (
-                <li
-                  key={suggest}
-                  className="flex py-1 text-lg hover:bg-gray-200 rounded-lg p-2"
-                >
-                  <BiSearchAlt2 className="mt-2 mr-2" />
-                  {suggest}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
       <div>
       </div>
