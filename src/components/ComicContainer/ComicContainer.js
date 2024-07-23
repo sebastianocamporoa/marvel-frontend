@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import md5 from "crypto-js/md5";
 import { Link } from "react-router-dom";
@@ -13,6 +13,7 @@ const ComicContainer = () => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
+  const comicIds = useRef(new Set());
 
   useEffect(() => {
     const PUBLIC_KEY = '60cfb37eee49438efb47affaf4866fd6';
@@ -36,7 +37,16 @@ const ComicContainer = () => {
           comic => !comic.thumbnail.path.includes('image_not_available')
         );
 
-        setComics((prevComics) => [...prevComics, ...filteredComics]);
+        const uniqueComics = filteredComics.filter(comic => {
+          if (comicIds.current.has(comic.id)) {
+            return false;
+          } else {
+            comicIds.current.add(comic.id);
+            return true;
+          }
+        });
+
+        setComics((prevComics) => [...prevComics, ...uniqueComics]);
         setLoading(false);
         setLoadingMore(false);
       } catch (error) {
