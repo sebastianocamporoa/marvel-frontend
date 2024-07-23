@@ -9,6 +9,7 @@ const Login = ({ onLoginSuccess }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
     const [identification, setIdentification] = useState('');
+    const [name, setName] = useState('');
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -29,6 +30,7 @@ const Login = ({ onLoginSuccess }) => {
         event.preventDefault();
         try {
             const response = await axios.post('https://marvel-backend-production-ff25.up.railway.app/users/register', {
+                name,
                 email,
                 identification,
                 password,
@@ -94,6 +96,13 @@ const Login = ({ onLoginSuccess }) => {
                         placeholder='Identificación'
                         value={identification}
                         onChange={(e) => setIdentification(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="text"
+                        placeholder='Nombre completo'
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         required
                     />
                     <input
