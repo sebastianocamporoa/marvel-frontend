@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <div className="grid grid-flow-col p-5 shadow-lg">
-      <div className="flex items-center	col-span-1 text-3xl">
+      <div className="flex items-center	col-span-11 text-3xl">
         <img
           onClick={() => handleToggleMenu()}
           className="h-[1.8rem] cursor-pointer"
@@ -35,22 +35,6 @@ const Header = () => {
             alt="Youtube-logo"
           />
         </a>
-      </div>
-      <div className=" flex col-span-10 pl-14">
-        <input
-          className="w-1/2 border border-gray-400 p-1 pl-3 rounded-l-full"
-          placeholder="Search..."
-          type="text"
-          onChange={(e) => {
-            console.log("cambia")
-          }}
-        />
-        <button
-          className="border border-gray-400 px-5 py-2 bg-gray-100 rounded-r-full"
-          type="button"
-        >
-          <BiSearchAlt2 />
-        </button>
       </div>
       <div>
       </div>
