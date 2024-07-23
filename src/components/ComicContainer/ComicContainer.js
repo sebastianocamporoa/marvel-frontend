@@ -14,12 +14,15 @@ const ComicContainer = () => {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const comicIds = useRef(new Set());
+  const maxAttempts = 5;
+  const attempt = useRef(0);
 
   useEffect(() => {
     const PUBLIC_KEY = '60cfb37eee49438efb47affaf4866fd6';
     const PRIVATE_KEY = 'c9be6c673fe295924d9ec91755bc82f6ba0127eb';
     const TIMESTAMP = '1';
     const HASH = md5(TIMESTAMP + PRIVATE_KEY + PUBLIC_KEY).toString();
+    const limit = 20;
 
     const fetchComics = async (page) => {
       try {
@@ -27,8 +30,8 @@ const ComicContainer = () => {
           params: {
             ts: TIMESTAMP,
             apikey: PUBLIC_KEY,
-            limit: 20,
-            offset: (page - 1) * 20,
+            limit: limit,
+            offset: (page - 1) * limit,
             hash: HASH,
           },
         });
@@ -46,7 +49,12 @@ const ComicContainer = () => {
           }
         });
 
-        setComics((prevComics) => [...prevComics, ...uniqueComics]);
+        if (uniqueComics.length > 0) {
+          setComics((prevComics) => [...prevComics, ...uniqueComics]);
+          attempt.current = 0;
+        } else {
+          attempt.current += 1;
+        }
         setLoading(false);
         setLoadingMore(false);
       } catch (error) {
@@ -56,7 +64,9 @@ const ComicContainer = () => {
       }
     };
 
-    fetchComics(page);
+    if (attempt.current < maxAttempts) {
+      fetchComics(page);
+    }
 
     const handleScroll = () => {
       if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || loadingMore) return;
