@@ -3,12 +3,20 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { togglemenu } from "../../utils/appSlice";
 import "./Header.scss";
+import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleToggleMenu = () => {
     dispatch(togglemenu());
+  };
+
+  const handleLogout = () => {
+    Cookies.remove('accessToken'); // Elimina el token de autenticación
+    navigate('/login'); // Redirige al usuario a la página de inicio de sesión
   };
 
   return (
@@ -47,11 +55,9 @@ const Header = () => {
       <div>
       </div>
       <div className="flex col-span-1">
-        <img
-          className="h-8"
-          src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-          alt="user-logo"
-        />
+        <button onClick={handleLogout} className="logout flex w-full text-left">
+          Cerrar Sesión
+        </button>
       </div>
     </div>
   );
