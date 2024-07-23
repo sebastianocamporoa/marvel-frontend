@@ -1,5 +1,4 @@
 import React from "react";
-import { BiSearchAlt2 } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { togglemenu } from "../../utils/appSlice";
 import "./Header.scss";
