@@ -1,0 +1,70 @@
+.login-container {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://cdn.registerdisney.go.com/v4/asset/bundler/MARVEL/v4/images/v1/marvel-background-web.webp");
+    background-position-x: center;
+    background-position-y: top;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.8);
+    background-size: cover;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-show {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #6c6d6d;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.form {
+    width: 300px;
+    height: 450px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    background-color: white;
+    color: rgb(27, 26, 26);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    input {
+        padding: 15px;
+        border-radius: 5px;
+        border: none;
+        background: rgb(227, 225, 225);
+        width: 100%;
+    }
+}
+
+.form-group {
+    position: relative;
+    width: 100%;
+}

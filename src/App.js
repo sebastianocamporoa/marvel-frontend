@@ -8,6 +8,8 @@ import MainContainer from "./components/MainContainer/MainContainer";
 import Watchpage from "./components/Watchpage";
 import Login from "./components/Login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Cookies from 'js-cookie';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const onLoginSuccess = () => {
   window.location.href = '/';
@@ -17,7 +19,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <Header />
+        {Cookies.get('accessToken') ? <Header /> : <></>}
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login onLoginSuccess={onLoginSuccess} />} />
