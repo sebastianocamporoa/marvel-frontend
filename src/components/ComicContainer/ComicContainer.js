@@ -22,7 +22,7 @@ const ComicContainer = () => {
     const PRIVATE_KEY = 'c9be6c673fe295924d9ec91755bc82f6ba0127eb';
     const TIMESTAMP = '1';
     const HASH = md5(TIMESTAMP + PRIVATE_KEY + PUBLIC_KEY).toString();
-    const limit = 20;
+    const limit = 40;
 
     const fetchComics = async (page) => {
       try {
