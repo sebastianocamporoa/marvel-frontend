@@ -44,7 +44,7 @@ const FavoritesList = () => {
           <ShimmerCard />
         ) : (
           comics.map((comic) => (
-            <Link to={"info/" + comic.comicId} key={comic.comicId}>
+            <Link to={"/info/" + comic.comicId} key={comic.comicId}>
               <ComicCardFavorite key={comic.comicId} info={comic} />
             </Link>
           ))
