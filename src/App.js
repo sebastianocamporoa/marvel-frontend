@@ -1,6 +1,6 @@
 import { Provider } from "react-redux";
 import "./styles/globals.scss";
-import Body from "./components/Body";
+import Body from "./components/Body/Body";
 import Header from "./components/Header/Header";
 import store from "./utils/store";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Cookies from 'js-cookie';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import ComicDetail from "./components/ComicDetail/ComicDetail";
+import FavoritesList from "./components/FavoritesList/FavoritesList";
 
 const onLoginSuccess = () => {
   window.location.href = '/';
@@ -27,6 +28,7 @@ function App() {
               <Route path="/" element={<Body />}>
                 <Route index element={<MainContainer />} />
                 <Route path="info/:id" element={<ComicDetail />} />
+                <Route path="favorites" element={<FavoritesList />} />
               </Route>
             </Route>
           </Routes>

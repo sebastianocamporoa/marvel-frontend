@@ -88,7 +88,7 @@ const ComicContainer = () => {
         <ShimmerCard />
       ) : (
         comics.map((comic) => (
-          <Link to={"info?id=" + comic.id} key={comic.id}>
+          <Link to={"info/" + comic.id} key={comic.id}>
             <ComicCard key={comic.id} info={comic} />
           </Link>
         ))

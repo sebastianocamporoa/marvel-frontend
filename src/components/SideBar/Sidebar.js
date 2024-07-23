@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import {
   AiOutlineHome,
 } from "react-icons/ai";
+import { FaStar } from "react-icons/fa";
+
 
 const Sidebar = () => {
   const isToggleMenu = useSelector((state) => state.app.isMenuOpen);
@@ -16,6 +18,12 @@ const Sidebar = () => {
           <Link to="/" className="flex">
             {" "}
             <AiOutlineHome className="mr-5 mt-1 text-xl" /> Inicio
+          </Link>
+        </li>
+        <li className="py-2 flex hover:bg-gray-200 rounded-lg pl-2 font-bold">
+          <Link to="/favorites" className="flex">
+            {" "}
+            <FaStar className="mr-5 mt-1 text-xl" /> Favoritos
           </Link>
         </li>
       </ul>

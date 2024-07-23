@@ -36,7 +36,22 @@ const ComicDetail = () => {
       }
     };
 
+    const checkFavorite = async () => {
+      const userId = Cookies.get('userId');
+      if (userId) {
+        try {
+          const response = await axios.get(`https://marvel-backend-production-ff25.up.railway.app/favorites/${userId}`);
+          const favoriteComics = response.data;
+          const isFav = favoriteComics.some(favComic => favComic.comicId === id);
+          setIsFavorite(isFav);
+        } catch (error) {
+          console.error('Error checking favorites:', error);
+        }
+      }
+    };
+
     fetchComic();
+    checkFavorite();
   }, [id]);
 
   const handleAddToFavorites = async () => {
@@ -46,21 +61,30 @@ const ComicDetail = () => {
       return;
     }
 
-    const favoriteData = {
-      comicId: comic.id,
-      imageUrl: `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
-      title: comic.title
-    };
+    if (isFavorite) {
+      try {
+        await axios.delete(`https://marvel-backend-production-ff25.up.railway.app/favorites/${userId}/${comic.id}`);
+        setIsFavorite(false);
+      } catch (error) {
+        console.error('Error removing comic from favorites:', error);
+      }
+    } else {
+      const favoriteData = {
+        comicId: comic.id,
+        imageUrl: `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
+        title: comic.title
+      };
 
-    try {
-      await axios.post(`https://marvel-backend-production-ff25.up.railway.app/favorites/${userId}`, favoriteData, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      setIsFavorite(true);
-    } catch (error) {
-      console.error('Error adding comic to favorites:', error);
+      try {
+        await axios.post(`https://marvel-backend-production-ff25.up.railway.app/favorites/${userId}`, favoriteData, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        setIsFavorite(true);
+      } catch (error) {
+        console.error('Error adding comic to favorites:', error);
+      }
     }
   };
 
@@ -84,7 +108,6 @@ const ComicDetail = () => {
             <button 
               className="add-to-favorites-button"
               onClick={handleAddToFavorites}
-              disabled={isFavorite}
             >
               {isFavorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
             </button>
