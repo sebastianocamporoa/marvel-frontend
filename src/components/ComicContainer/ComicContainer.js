@@ -83,7 +83,7 @@ const ComicContainer = () => {
   if (error) return <p>Error loading content: {error.message}</p>;
 
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap justify-center">
       {comics?.length === 0 ? (
         <ShimmerCard />
       ) : (
