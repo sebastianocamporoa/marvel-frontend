@@ -40,7 +40,7 @@
 
 .form {
     width: 300px;
-    height: 450px;
+    height: 510px;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 40px;
@@ -67,4 +67,9 @@
 .form-group {
     position: relative;
     width: 100%;
+}
+
+.toggle-link {
+    cursor: pointer;
+    color: #E62E2D;
 }
