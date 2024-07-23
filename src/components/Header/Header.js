@@ -55,7 +55,7 @@ const Header = () => {
       <div>
       </div>
       <div className="flex col-span-1">
-        <button onClick={handleLogout} className="logout flex w-full text-left">
+        <button onClick={handleLogout} className="logout flex w-full hover:bg-red-50 rounded-lg pl-2 font-bold">
           Cerrar Sesión
         </button>
       </div>

@@ -2,3 +2,13 @@
     width: 100px;
     height: auto;
 }
+
+.logout {
+    border: 1px solid #E62F2E;
+    border-radius: 20px;
+
+    :hover {
+        color: white;
+        background-color:#E62F2E;
+    }
+}
