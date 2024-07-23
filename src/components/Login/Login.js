@@ -18,8 +18,9 @@ const Login = ({ onLoginSuccess }) => {
                 email,
                 password,
             });
-            const { accessToken } = response.data;
+            const { accessToken, userId } = response.data;
             Cookies.set('accessToken', accessToken);
+            Cookies.set('userId', userId);
             onLoginSuccess();
         } catch (error) {
             console.log(error)

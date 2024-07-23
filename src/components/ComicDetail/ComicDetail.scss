@@ -1,0 +1,67 @@
+.comic-detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .comic-detail {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comic-detail-image {
+    flex: 1;
+    max-width: 50%;
+  }
+  
+  .comic-detail-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .comic-detail-info {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .comic-detail-info h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .comic-detail-info p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  
+  .add-to-favorites-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #E62F2E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #c22929;
+    }
+  
+    &:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+  }
+  
