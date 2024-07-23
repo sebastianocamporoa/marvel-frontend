@@ -1,10 +1,10 @@
 import { Provider } from "react-redux";
 import "./styles/globals.scss";
 import Body from "./components/Body";
-import Header from "./components/Header/Header"; 
+import Header from "./components/Header/Header";
 import store from "./utils/store";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MainContainer from "./components/MainContainer/MainContainer";   
+import MainContainer from "./components/MainContainer/MainContainer";
 import Watchpage from "./components/Watchpage";
 import Login from "./components/Login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -18,9 +18,9 @@ const onLoginSuccess = () => {
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
-        {Cookies.get('accessToken') ? <Header /> : <></>}
-        <BrowserRouter>
+      <BrowserRouter>
+        <div className="App">
+          {Cookies.get('accessToken') ? <Header /> : <></>}
           <Routes>
             <Route path="/login" element={<Login onLoginSuccess={onLoginSuccess} />} />
             <Route element={<ProtectedRoute />}>
@@ -31,8 +31,8 @@ function App() {
               </Route>
             </Route>
           </Routes>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
     </Provider>
   );
 }
