@@ -88,7 +88,7 @@ const ComicDetail = () => {
     }
   };
 
-  if (loading) return <div className="flex items-center"><CircleLoader color="rgba(255, 0, 0, 1)" /></div>;
+  if (loading) return <div className='w-5/6 flex items-center justify-center' ><div className="flex items-center "><CircleLoader color="rgba(255, 0, 0, 1)" /></div></div>;
   if (error) return <p>Error al cargar el comic: {error.message}</p>;
 
   return (
