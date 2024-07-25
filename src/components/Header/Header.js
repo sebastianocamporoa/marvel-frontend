@@ -31,7 +31,7 @@ const Header = () => {
           <img
             className="header h-[1.8rem] mx-2"
             src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Marvel_Logo.svg"
-            alt="Youtube-logo"
+            alt="marvel-logo"
           />
         </a>
       </div>
