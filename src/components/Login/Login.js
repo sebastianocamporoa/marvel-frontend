@@ -28,7 +28,7 @@ const Login = ({ onLoginSuccess }) => {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Something went wrong!"
+                text: error?.response?.data?.message
               });
         }
     };
@@ -51,7 +51,7 @@ const Login = ({ onLoginSuccess }) => {
                 icon: "error",
                 title: "Oops...",
                 confirmButtonColor: "#E62E2D",
-                text: error.message
+                text: error?.response?.data?.message
               });
         }
     };
