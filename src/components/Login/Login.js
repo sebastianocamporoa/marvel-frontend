@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import "./Login.scss";
+import Swal from 'sweetalert2';
 
 const Login = ({ onLoginSuccess }) => {
     const [email, setEmail] = useState('');
@@ -23,7 +24,12 @@ const Login = ({ onLoginSuccess }) => {
             Cookies.set('userId', userId);
             onLoginSuccess();
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+              });
         }
     };
 
@@ -40,7 +46,13 @@ const Login = ({ onLoginSuccess }) => {
             Cookies.set('accessToken', accessToken);
             onLoginSuccess();
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                confirmButtonColor: "#E62E2D",
+                text: error.message
+              });
         }
     };
 
@@ -60,7 +72,7 @@ const Login = ({ onLoginSuccess }) => {
                     <h1 className='text-2xl font-bold'>Inicio de sesión</h1>
                     <input
                         type="email"
-                        placeholder='email'
+                        placeholder='Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
@@ -101,14 +113,14 @@ const Login = ({ onLoginSuccess }) => {
                     />
                     <input
                         type="text"
-                        placeholder='Nombre completo'
+                        placeholder='Nombre Completo'
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
                     />
                     <input
                         type="email"
-                        placeholder='email'
+                        placeholder='Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
